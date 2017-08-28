@@ -1,1 +1,18 @@
-404: Not Found
+#!groovy
+@Library('shared-libraries@fronty/npm-5') _
+
+properties ([
+    buildDiscarder(logRotator(artifactNumToKeepStr: '5', daysToKeepStr: '15')),
+    disableConcurrentBuilds()
+])
+
+def parameters = [:]
+parameters['label'] = "seed.${env.BRANCH_NAME}.${env.BUILD_NUMBER}".replaceAll("[^a-zA-Z0-9]+","_")
+parameters['resourceLimitCpu'] = "2"
+parameters['resourceRequestCpu'] = "2"
+parameters['resourceLimitMemory'] = "4Gi"
+parameters['resourceRequestMemory'] = "4Gi"
+parameters['buildCommands'] = ["lint", "test"]
+
+appengineBuildDependenciesNode(parameters) {}
+
