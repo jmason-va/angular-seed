@@ -1,0 +1,294 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+
+@include mat-core();
+$primary: mat-palette($mat-blue,600);
+$accent: mat-palette($mat-green,600);
+$theme: mat-light-theme($primary, $accent);
+@include angular-material-theme($theme);
+
+html {
+  height: 100%;
+  background-color: #f6f6f6;
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+// ------------------------------------------------------------------------------------------------------
+// COLORS -----------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
+$primary-accent-color: #4d87c4;
+$secondary-accent-color: #3f9b63;
+
+$secondary-background-color: #efefef;
+
+$white: #ffffff;
+$lighter-gray: #f6f6f6;
+$light-gray: #e5e5e5;
+$medium-gray: #d7d8d9;
+
+$active-blue: #057EC1;
+
+$gray: #999999;
+$dark-gray: #666666;
+$darker-gray: #333333;
+$black: #000000;
+
+$red: #c42727;
+$dark-red: #9a0909;
+$green: #3fb23f;
+$dark-green: #099a09;
+$light-blue: #e1edf4;
+$blue: #057ec1;
+$dark-blue: #09669a;
+$yellow: #f4ae00;
+$purple: #512c8c;
+$dark-purple: #41099a;
+
+
+// Colors
+
+$PRIMARY_BACKGROUND_COLOR: #F6F6F6;
+$SECONDARY_BACKGROUND_COLOR: #EFEFEF;
+$TERTIARY_BACKGROUND_COLOR: #E5E5E5;
+
+// Base Colors
+
+$black: #000 !default;
+$white: #fff !default;
+
+$lighter-gray: #f6f6f6 !default;
+$light-gray: #e5e5e5 !default;
+$disabled-gray: darken($light-gray, 10%);
+$gray: #999 !default;
+$dark-gray: #666 !default;
+$darker-gray: #333 !default;
+$nav-color: #3c3e50 !default;
+$nav-darkcolor: #36384a !default;
+$nav-lightcolor: #565b77 !default;
+$nav-subcolor: #676f87 !default;
+$nav-lightercolor: #8b8ea4 !default;
+
+$red: #c42727 !default;
+$green: #3fb23f !default;
+$blue: #057ec1 !default;
+$yellow: #f4ae00 !default;
+$purple: #512c8c !default;
+$orange: #f48047 !default;
+
+$transparent: transparent !default;
+
+//FEC Core colors
+
+// Light Colors
+
+$light-red: change-color($red, $saturation: 46%, $lightness: 92%);
+$light-green: change-color($green, $saturation: 46%, $lightness: 92%);
+$light-blue: change-color($blue, $saturation: 46%, $lightness: 92%);
+$light-purple: change-color($purple, $saturation: 46%, $lightness: 92%);
+$light-yellow: change-color($yellow, $saturation: 46%, $lightness: 92%);
+$light-orange: change-color($orange, $saturation: 46%, $lightness: 92%);
+
+// Dark Colors
+
+$dark-red: change-color($red, $saturation: 89%, $lightness: 32%);
+$dark-green: change-color($green, $saturation: 89%, $lightness: 32%);
+$dark-blue: change-color($blue, $saturation: 89%, $lightness: 32%);
+$dark-purple: change-color($purple, $saturation: 89%, $lightness: 32%);
+$dark-yellow: #d18d05 !default;
+
+// Border Colors
+$primary-border-color: #dadada !default;
+
+
+// Product Colors
+$reputation-management-color: #ebd900 !default;
+$social-marketing-color: #33ace2 !default;
+$presence-builder-color: #4fbe43 !default;
+$brand-analytics-color: #e64c00 !default;
+$concierge-color: #595959 !default;
+$business-center-color: #ff7900 !default;
+
+
+// Theme Colors
+$nav-light-background-color: $white;
+$nav-light-sub-nav-color: $lighter-gray;
+$nav-light-sub-nav-hover-color: $white;
+$nav-light-selected-background-color: $light-blue;
+$nav-light-selected-text-color: $blue;
+$nav-light-hover-text-color: $blue;
+$nav-light-text-color: #666 !default;
+$nav-light-title-color: #4d4c4d !default;
+$nav-light-border-color: #dadada !default;
+
+$nav-dark-background-color: #1f292e !default;
+$nav-dark-sub-nav-color: #48575c !default;
+$nav-dark-sub-nav-hover-color: #637278 !default;
+$nav-dark-selected-background-color: #2f3b3f !default;
+$nav-dark-selected-text-color: $white;
+$nav-dark-hover-text-color: $white;
+$nav-dark-text-color: #999 !default;
+$nav-dark-title-color: $white;
+$nav-dark-border-color: #2f3b3f !default;
+
+// ------------------------------------------------------------------------------------------------------
+// LAYOUT -----------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
+// Configurable breakpoints
+// Changing these should only be done after careful consideration.
+$media--phone-minimum: 569px !default;
+$media--tablet-minimum: 960px !default;
+$media--desktop-minimum: 992px !default;
+$media--desktop-large-minimum: 1200px !default;
+
+
+// Useful utilities for cases the simple forms don't quite support easily.
+@mixin media-query($width, $target: 'screen') {
+    @media #{$target} and (min-width: #{$width}) {
+        @content;
+    }
+}
+
+
+// Simple use cases for 80% of needs.
+@mixin phone {
+    @include media-query($media--phone-minimum) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @include media-query($media--tablet-minimum) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @include media-query($media--desktop-minimum) {
+        @content;
+    }
+}
+
+@mixin desktop-large {
+    @include media-query($media--desktop-large-minimum) {
+        @content;
+    }
+}
+
+@mixin desktop-print {
+    @include media-query($media--desktop-minimum, 'print') {
+        @content;
+    }
+}
+
+$grid-gutter: 20px !default;
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+
+    + .row-gutters {
+        margin-top: 0;
+    }
+}
+
+.row-gutters {
+    margin-top: -$grid-gutter;
+    margin-left: -$grid-gutter;
+
+    > .col {
+        padding-top: $grid-gutter;
+        padding-left: $grid-gutter;
+    }
+}
+
+.col {
+    position: relative;
+    max-width: 100%;
+    box-sizing: border-box;
+    flex: 1 1 0%;
+}
+
+@mixin def-columns($size) {
+    .col-#{$size}-1,
+    .col-#{$size}-2,
+    .col-#{$size}-3,
+    .col-#{$size}-4,
+    .col-#{$size}-5,
+    .col-#{$size}-6,
+    .col-#{$size}-7,
+    .col-#{$size}-8,
+    .col-#{$size}-9,
+    .col-#{$size}-10,
+    .col-#{$size}-11,
+    .col-#{$size}-12 { flex: 0 0 auto; }
+
+    .col-#{$size}-1 { width: 8.333333%; }
+    .col-#{$size}-2 { width: 16.666667%; }
+    .col-#{$size}-3 { width: 25%; }
+    .col-#{$size}-4 { width: 33.333333%; }
+    .col-#{$size}-5 { width: 41.666667%; }
+    .col-#{$size}-6 { width: 50%; }
+    .col-#{$size}-7 { width: 58.333333%; }
+    .col-#{$size}-8 { width: 66.666667%; }
+    .col-#{$size}-9 { width: 75%; }
+    .col-#{$size}-10 { width: 83.333333%; }
+    .col-#{$size}-11 { width: 92.666667%; }
+    .col-#{$size}-12 { width: 100%; }
+}
+
+@include def-columns(xs);
+
+@include tablet {
+    @include def-columns(sm)
+}
+
+@include desktop {
+    @include def-columns(md)
+}
+
+@include desktop-large {
+    @include def-columns(lg)
+}
+
+// ------------------------------------------------------------------------------------------------------
+// ALERTS -----------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
+
+snack-bar-container {
+  &.snackbar-error {
+    simple-snack-bar:before {
+      content: "ERROR: ";
+      color: #FF0000;
+      font-weight: bold;
+      padding-right: 5px;
+    }
+    button {
+      &.mat-simple-snackbar-action {
+        margin-left: 16px;
+      }
+    }
+  }
+
+  &.snackbar-success {
+    simple-snack-bar:before {
+      content: "SUCCESS: ";
+      color: #00FF00;
+      font-weight: bold;
+      padding-right: 5px;
+    }
+    button {
+      &.mat-simple-snackbar-action {
+        margin-left: 16px;
+      }
+    }
+  }
+}
