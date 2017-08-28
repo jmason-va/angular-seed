@@ -1,20 +1,21 @@
 from invoke import task, run
 
+# TODO: replace <base-project> with the base project name
 ENV_TO_APP = {
-    'test': 'vbc-test',
-    'demo': 'vbc-demo',
-    'prod': 'vbc-prod'
+    'test': '<base-project>-test',
+    'demo': '<base-project>-demo',
+    'prod': '<base-project>-prod'
 }
 
 
 @task()
 def lint(ctx):
-    run('yarn run lint')
+    run('npm run lint')
 
 
 @task()
 def test(ctx):
-    run('yarn run test')
+    run('npm run test')
 
 
 @task(help={
@@ -27,10 +28,10 @@ def deploy(ctx, environment, version, set_version=False):
     if not application:
         raise ValueError('Invalid environment. Must be one of test, demo, or prod.')
     if environment == 'prod':
-        run('yarn run build:prod', echo=True)
+        run('npm run build:prod', echo=True)
     elif environment == 'demo':
-        run('yarn run build:demo', echo=True)
+        run('npm run build:demo', echo=True)
     else:
-        run('yarn run build:dev', echo=True)
+        run('npm run build:dev', echo=True)
     run("gcloud app deploy --project {0} --version {1} {2} --quiet --verbosity=info"
         .format(application, version, '--promote' if set_version else '--no-promote'), echo=True)

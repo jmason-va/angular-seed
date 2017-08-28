@@ -7,7 +7,8 @@ properties ([
 ])
 
 def parameters = [:]
-parameters['label'] = "seed.${env.BRANCH_NAME}.${env.BUILD_NUMBER}".replaceAll("[^a-zA-Z0-9]+","_")
+// TODO: change angular-seed to your project name
+parameters['label'] = "angular-seed.${env.BRANCH_NAME}.${env.BUILD_NUMBER}".replaceAll("[^a-zA-Z0-9]+","_")
 parameters['resourceLimitCpu'] = "2"
 parameters['resourceRequestCpu'] = "2"
 parameters['resourceLimitMemory'] = "4Gi"

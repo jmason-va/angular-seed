@@ -1,4 +1,7 @@
-service: marketplace-public-store
+# TODO: change service name to whatever module is serving this microservice is serving from
+# will have to dispatch traffic to this module from the base project
+# look at https://github.com/vendasta/VBC/blob/master/src/dispatch.yaml#L44 for an example of what to do
+service: angular-seed
 api_version: 1
 runtime: python27
 threadsafe: false
@@ -6,11 +9,7 @@ instance_class: F1
 
 handlers:
 
-- url: /public/store/assets
-  static_dir: target/assets
-  expiration: 1d
-
-- url: /public/store/(.*\.(js|css|map))$
+- url: /(.*\.(js|css|map))$
   static_files: target/\1
   upload: target/(.*\.(js|css|map))$
   expiration: 364d
