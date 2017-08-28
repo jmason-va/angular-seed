@@ -20,125 +20,6 @@ body {
   padding: 0;
 }
 
-
-
-// ------------------------------------------------------------------------------------------------------
-// COLORS -----------------------------------------------------------------------------------------------
-// ------------------------------------------------------------------------------------------------------
-$primary-accent-color: #4d87c4;
-$secondary-accent-color: #3f9b63;
-
-$secondary-background-color: #efefef;
-
-$white: #ffffff;
-$lighter-gray: #f6f6f6;
-$light-gray: #e5e5e5;
-$medium-gray: #d7d8d9;
-
-$active-blue: #057EC1;
-
-$gray: #999999;
-$dark-gray: #666666;
-$darker-gray: #333333;
-$black: #000000;
-
-$red: #c42727;
-$dark-red: #9a0909;
-$green: #3fb23f;
-$dark-green: #099a09;
-$light-blue: #e1edf4;
-$blue: #057ec1;
-$dark-blue: #09669a;
-$yellow: #f4ae00;
-$purple: #512c8c;
-$dark-purple: #41099a;
-
-
-// Colors
-
-$PRIMARY_BACKGROUND_COLOR: #F6F6F6;
-$SECONDARY_BACKGROUND_COLOR: #EFEFEF;
-$TERTIARY_BACKGROUND_COLOR: #E5E5E5;
-
-// Base Colors
-
-$black: #000 !default;
-$white: #fff !default;
-
-$lighter-gray: #f6f6f6 !default;
-$light-gray: #e5e5e5 !default;
-$disabled-gray: darken($light-gray, 10%);
-$gray: #999 !default;
-$dark-gray: #666 !default;
-$darker-gray: #333 !default;
-$nav-color: #3c3e50 !default;
-$nav-darkcolor: #36384a !default;
-$nav-lightcolor: #565b77 !default;
-$nav-subcolor: #676f87 !default;
-$nav-lightercolor: #8b8ea4 !default;
-
-$red: #c42727 !default;
-$green: #3fb23f !default;
-$blue: #057ec1 !default;
-$yellow: #f4ae00 !default;
-$purple: #512c8c !default;
-$orange: #f48047 !default;
-
-$transparent: transparent !default;
-
-//FEC Core colors
-
-// Light Colors
-
-$light-red: change-color($red, $saturation: 46%, $lightness: 92%);
-$light-green: change-color($green, $saturation: 46%, $lightness: 92%);
-$light-blue: change-color($blue, $saturation: 46%, $lightness: 92%);
-$light-purple: change-color($purple, $saturation: 46%, $lightness: 92%);
-$light-yellow: change-color($yellow, $saturation: 46%, $lightness: 92%);
-$light-orange: change-color($orange, $saturation: 46%, $lightness: 92%);
-
-// Dark Colors
-
-$dark-red: change-color($red, $saturation: 89%, $lightness: 32%);
-$dark-green: change-color($green, $saturation: 89%, $lightness: 32%);
-$dark-blue: change-color($blue, $saturation: 89%, $lightness: 32%);
-$dark-purple: change-color($purple, $saturation: 89%, $lightness: 32%);
-$dark-yellow: #d18d05 !default;
-
-// Border Colors
-$primary-border-color: #dadada !default;
-
-
-// Product Colors
-$reputation-management-color: #ebd900 !default;
-$social-marketing-color: #33ace2 !default;
-$presence-builder-color: #4fbe43 !default;
-$brand-analytics-color: #e64c00 !default;
-$concierge-color: #595959 !default;
-$business-center-color: #ff7900 !default;
-
-
-// Theme Colors
-$nav-light-background-color: $white;
-$nav-light-sub-nav-color: $lighter-gray;
-$nav-light-sub-nav-hover-color: $white;
-$nav-light-selected-background-color: $light-blue;
-$nav-light-selected-text-color: $blue;
-$nav-light-hover-text-color: $blue;
-$nav-light-text-color: #666 !default;
-$nav-light-title-color: #4d4c4d !default;
-$nav-light-border-color: #dadada !default;
-
-$nav-dark-background-color: #1f292e !default;
-$nav-dark-sub-nav-color: #48575c !default;
-$nav-dark-sub-nav-hover-color: #637278 !default;
-$nav-dark-selected-background-color: #2f3b3f !default;
-$nav-dark-selected-text-color: $white;
-$nav-dark-hover-text-color: $white;
-$nav-dark-text-color: #999 !default;
-$nav-dark-title-color: $white;
-$nav-dark-border-color: #2f3b3f !default;
-
 // ------------------------------------------------------------------------------------------------------
 // LAYOUT -----------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------------
@@ -258,6 +139,124 @@ $grid-gutter: 20px !default;
 @include desktop-large {
     @include def-columns(lg)
 }
+
+// ------------------------------------------------------------------------------------------------------
+// COLORS -----------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
+$primary-accent-color: #4d87c4;
+$secondary-accent-color: #3f9b63;
+
+$secondary-background-color: #efefef;
+
+$white: #ffffff;
+$lighter-gray: #f6f6f6;
+$light-gray: #e5e5e5;
+$medium-gray: #d7d8d9;
+
+$active-blue: #057EC1;
+
+$gray: #999999;
+$dark-gray: #666666;
+$darker-gray: #333333;
+$black: #000000;
+
+$red: #c42727;
+$dark-red: #9a0909;
+$green: #3fb23f;
+$dark-green: #099a09;
+$light-blue: #e1edf4;
+$blue: #057ec1;
+$dark-blue: #09669a;
+$yellow: #f4ae00;
+$purple: #512c8c;
+$dark-purple: #41099a;
+
+
+// Colors
+
+$PRIMARY_BACKGROUND_COLOR: #F6F6F6;
+$SECONDARY_BACKGROUND_COLOR: #EFEFEF;
+$TERTIARY_BACKGROUND_COLOR: #E5E5E5;
+
+// Base Colors
+
+$black: #000 !default;
+$white: #fff !default;
+
+$lighter-gray: #f6f6f6 !default;
+$light-gray: #e5e5e5 !default;
+$disabled-gray: darken($light-gray, 10%);
+$gray: #999 !default;
+$dark-gray: #666 !default;
+$darker-gray: #333 !default;
+$nav-color: #3c3e50 !default;
+$nav-darkcolor: #36384a !default;
+$nav-lightcolor: #565b77 !default;
+$nav-subcolor: #676f87 !default;
+$nav-lightercolor: #8b8ea4 !default;
+
+$red: #c42727 !default;
+$green: #3fb23f !default;
+$blue: #057ec1 !default;
+$yellow: #f4ae00 !default;
+$purple: #512c8c !default;
+$orange: #f48047 !default;
+
+$transparent: transparent !default;
+
+//FEC Core colors
+
+// Light Colors
+
+$light-red: change-color($red, $saturation: 46%, $lightness: 92%);
+$light-green: change-color($green, $saturation: 46%, $lightness: 92%);
+$light-blue: change-color($blue, $saturation: 46%, $lightness: 92%);
+$light-purple: change-color($purple, $saturation: 46%, $lightness: 92%);
+$light-yellow: change-color($yellow, $saturation: 46%, $lightness: 92%);
+$light-orange: change-color($orange, $saturation: 46%, $lightness: 92%);
+
+// Dark Colors
+
+$dark-red: change-color($red, $saturation: 89%, $lightness: 32%);
+$dark-green: change-color($green, $saturation: 89%, $lightness: 32%);
+$dark-blue: change-color($blue, $saturation: 89%, $lightness: 32%);
+$dark-purple: change-color($purple, $saturation: 89%, $lightness: 32%);
+$dark-yellow: #d18d05 !default;
+
+// Border Colors
+$primary-border-color: #dadada !default;
+
+
+// Product Colors
+$reputation-management-color: #ebd900 !default;
+$social-marketing-color: #33ace2 !default;
+$presence-builder-color: #4fbe43 !default;
+$brand-analytics-color: #e64c00 !default;
+$concierge-color: #595959 !default;
+$business-center-color: #ff7900 !default;
+
+
+// Theme Colors
+$nav-light-background-color: $white;
+$nav-light-sub-nav-color: $lighter-gray;
+$nav-light-sub-nav-hover-color: $white;
+$nav-light-selected-background-color: $light-blue;
+$nav-light-selected-text-color: $blue;
+$nav-light-hover-text-color: $blue;
+$nav-light-text-color: #666 !default;
+$nav-light-title-color: #4d4c4d !default;
+$nav-light-border-color: #dadada !default;
+
+$nav-dark-background-color: #1f292e !default;
+$nav-dark-sub-nav-color: #48575c !default;
+$nav-dark-sub-nav-hover-color: #637278 !default;
+$nav-dark-selected-background-color: #2f3b3f !default;
+$nav-dark-selected-text-color: $white;
+$nav-dark-hover-text-color: $white;
+$nav-dark-text-color: #999 !default;
+$nav-dark-title-color: $white;
+$nav-dark-border-color: #2f3b3f !default;
+
 
 // ------------------------------------------------------------------------------------------------------
 // ALERTS -----------------------------------------------------------------------------------------------
