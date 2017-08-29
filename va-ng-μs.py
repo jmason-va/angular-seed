@@ -122,7 +122,7 @@ def update_app_component(project_name):
     """configuration"""
     clear_file('{}/src/app/app.component.html'.format(project_name),  # clear app.component
                """
-    <md-card style="text-align: center; margin: 30px auto; width: 3000px;">
+    <md-card style="text-align: center; margin: 30px auto; width: 300px;">
       <img src="https://vbc-frontend.storage-download.googleapis.com/salesperson-details/vendasta_icon.png"/>
       <div>Welcome to your new angular microservice</div>
       <div style="font-size:10px;padding-top:20px;">va-ng-μs</div>
