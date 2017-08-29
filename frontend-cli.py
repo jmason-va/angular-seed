@@ -3,14 +3,18 @@
 import os
 import subprocess
 
-# paths to generic config files
-jenkinsfile_path = "https://raw.githubusercontent.com/jmason-va/angular-seed/master/jenkinsfile"
-tasks_path = "https://raw.githubusercontent.com/jmason-va/angular-seed/master/tasks.py"
-app_yaml = "https://raw.githubusercontent.com/jmason-va/angular-seed/master/app.yaml"
-angular_cli_json = "https://raw.githubusercontent.com/vendasta/marketplace-public-store/master/.angular-cli.json?token=AQecjDCTZC1Jou_uR_m6lImwgRT-0yv4ks5ZqcF_wA%3D%3D"
-styles = "https://raw.githubusercontent.com/jmason-va/angular-seed/master/src/styles.scss"
-readme = "https://raw.githubusercontent.com/jmason-va/angular-seed/master/README.md"
+# project to take the config from
+project_path = "https://raw.githubusercontent.com/jmason-va/angular-seed/master"
 
+# paths to generic config files
+jenkinsfile = "{}/jenkinsfile".format(project_path)
+tasks = "{}/tasks.py".format(project_path)
+app_yaml = "{}/app.yaml".format(project_path)
+angular_cli_json = "{}/.angular-cli.json".format(project_path)
+styles = "{}/src/styles.scss".format(project_path)
+karma = "{}/karma.conf.js".format(project_path)
+readme = "{}/README.md".format(project_path)
+polyfills = "{}/src/polyfills.ts".format(project_path)
 # color terminal output
 GREEN = '\033[92m'
 RED = '\033[91m'
@@ -27,12 +31,12 @@ def generate_config_files(project_name, parent_project_name):
   ls_output = subprocess.check_output('ls')
 
   print '\n{}configuring jenkinsfile{}'.format(GREEN, END)
-  get_file(jenkinsfile_path, "jenkinsfile")  # generate a generic angular jenkinsfile
+  get_file(jenkinsfile, "jenkinsfile")  # generate a generic angular jenkinsfile
   replace_in_file('jenkinsfile', 'angular-seed', project_name)  # update the label to include the project name
   os.system('mv jenkinsfile {}'.format(project_name))  # move the jenkinsfile into the base directory
 
   print '\n{}configuring tasks.py{}'.format(GREEN, END)
-  get_file(tasks_path, "tasks.py")  # generate a generic angular tasks file
+  get_file(tasks, "tasks.py")  # generate a generic angular tasks file
   replace_in_file('tasks.py', '<base-project>',
                   parent_project_name)  # configure which application this service deploys to
   os.system('mv tasks.py {}'.format(project_name))  # move the tasks file into the base directory
@@ -42,12 +46,27 @@ def generate_config_files(project_name, parent_project_name):
   replace_in_file('app.yaml', 'angular-seed', project_name)  # configure the service name
   os.system('mv app.yaml {}'.format(project_name))  # move the app.yaml file into the base directory
 
+  print '\n{}configuring karma.conf{}'.format(GREEN, END)
+  os.system('npm --prefix {} install --save-dev karma-phantomjs-launcher '.format(
+    project_name))  # install phantomjs launcher for tests
+  os.system('npm --prefix {} install --save intl'.format(project_name))  # install intl as a dep for phantomjs
+  os.system('rm {}/karma.conf.js'.format(project_name))  # move the karma.conf.js file into the base directory
+  get_file(karma, "karma.conf.js")
+  os.system(
+    'mv karma.conf.js {}/karma.conf.js'.format(project_name))  # move the karma.conf.js file into the base directory
+
+  print '\n{}configuring polyfills{}'.format(GREEN, END)
+  os.system('rm {}/src/polyfills.ts'.format(project_name))  # move the polyfills file into the src directory
+  get_file(polyfills, "polyfills.ts")  # generate a generic app.yaml file
+  os.system('mv polyfills.ts {}/src'.format(project_name))  # move the app.yaml file into the base directory
+
   print '\n{}configuring readme{}'.format(GREEN, END)
   os.system('rm {}/README.md'.format(project_name))  # remove cli readme
   get_file(readme, "README.md")  # generate basic readme
   os.system('mv README.md {}'.format(project_name))  # move basic readme into base folder
 
   print '\n{}adding basic styles{}'.format(GREEN, END)
+  os.system('rm {}/src/styles.css'.format(project_name))  # remove styles.css file
   get_file(styles, "styles.scss")  # get basic styles
   os.system('mv styles.scss {}/src'.format(project_name))  # move styles.scss to the src
 
@@ -69,12 +88,12 @@ def generate_config_files(project_name, parent_project_name):
   package_json_path = '{}/package.json'.format(project_name)  # add deps to package json
   replace_in_file(package_json_path, '"dependencies": {',
                   '"dependencies": { \n    "@angular/material": "2.0.0-beta.3",')
-  # os.system('npm --prefix {} install angular-material --save'.format(project_name))       # having trouble installing this properly
+  # os.system('npm --prefix {} install angular-material --save'.format(project_name))      # having trouble installing this properly
 
   clear_file('{}/src/app/app.component.html'.format(project_name),  # clear app.component
              """
            <md-card style="text-align: center; margin: 30px auto; width: 250px;">
-             <img src="https://00e9e64bac965b1bca2d8d5a05bf88ef24d9684485b44f2c84-apidata.googleusercontent.com/download/storage/v1/b/vbc-frontend/o/salesperson-details%2Fvendasta_icon.png?qk=AD5uMEvdRKkaOMZBN_Fu0M6d7G8rBB0__8NdE4Aa95XBVEs2gMYmTmpEUutvvhKWL6JX2_OJeM1bRKXvDcapo1uAzDctM7ZBP65R0Q_yUBQSvn2q9LPRinlrXSeH_qdXWRyTUktkvG1gGJIFZESBCQM9aWI_uw1ITTlelxWmlIAybZEqL48zReaCz4zO0jBdOQXtI3g7h__U9-641FBk1rVNW6AIydg1lO5v1lid3EOtLwU5j8lUR-2Pr9aF2OWo3ee-cfSGq9XIpGEptRFGPHLW0PHqyxT52CcToNguWCRtV7-pS_40qHYGC7iwZv8YJHto6Jj2GNwZ05cJv4z-KbGPVf_WpBp-dww-qC3Z6dGUVXf-f6542DlIzBH0xRVehGmDEaSVguMED8NN6yHPGz6sCpO1aMGG90riM5MAIolsEfk6C983anDHPf6WynZcbF4fZJfl0PTRmgnbhvVC6WzuyOVYU-ooBvq7eLgJwinOlgxYtQw0uxUUQwGjz5KV_adrOsqdN9zRgPz4r5vOpZp3zWomiDj7VsAxNtPbNN01bCHeyf0UZ2hN4uiXCRGINAYmT57icdBZuKqHPcwJATFylAcEw6BxAjhHsX2T6WblYfZXbqkN_BVDkVOzvjlSB2-2oAMx7zCCk6xQGGWraSm3QoanNwWt_ksus8-8suRsSaiXf3rvtNeGwWm66KkIzXTJiH_GrVr33FQRK1usm3cZ08u8v4pit7_xdT49spZo8F1WEEvsALvF_5MrjgyrqFHiS0gAE69SL9dUbwKc0k3JQg2EnL4szt5XyCsjgjmcrUlXmZtED8s"/>
+             <img src="https://vbc-frontend.storage-download.googleapis.com/salesperson-details/vendasta_icon.png"/>
              <div>Vendasta Frontend Microservice</div>
            </md-card>
            <router-outlet></router-outlet>
