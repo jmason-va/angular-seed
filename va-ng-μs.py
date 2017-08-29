@@ -80,9 +80,7 @@ def generate_config_files(project_name, parent_project_name):
   print '\n{}adding material to project{}'.format(GREEN, END)
   app_module_path = '{}/src/app/app.module.ts'.format(project_name)
   replace_in_file(app_module_path, """import { NgModule } from '@angular/core';""",  # add material import to app.module
-                  """import { NgModule } from '@angular/core';
-                  import { MaterialModule } from '@angular/material';
-                  """)
+                  "import { NgModule } from '@angular/core';\nimport { MaterialModule } from '@angular/material';")
   replace_in_file(app_module_path, 'imports: [', 'imports: [ MaterialModule,')
 
   print '\n{}updating package.json{}'.format(GREEN, END)
@@ -95,7 +93,8 @@ def generate_config_files(project_name, parent_project_name):
              """
   <md-card style="text-align: center; margin: 30px auto; width: 250px;">
     <img src="https://vbc-frontend.storage-download.googleapis.com/salesperson-details/vendasta_icon.png"/>
-    <div>va-ng-μs</div>
+    <div>Welcome to your new angular microservice</div>
+    <div style="font-size:10px;padding-top:20px;">va-ng-μs</div>
   </md-card>
   <router-outlet></router-outlet>
              """)
