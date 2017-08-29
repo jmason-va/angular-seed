@@ -90,13 +90,29 @@ def generate_config_files(project_name, parent_project_name):
                   '"dependencies": { \n    "@angular/material": "2.0.0-beta.3",')
   # os.system('npm --prefix {} install angular-material --save'.format(project_name))      # having trouble installing this properly
 
+  # add basic app component
   clear_file('{}/src/app/app.component.html'.format(project_name),  # clear app.component
              """
-           <md-card style="text-align: center; margin: 30px auto; width: 250px;">
-             <img src="https://vbc-frontend.storage-download.googleapis.com/salesperson-details/vendasta_icon.png"/>
-             <div>Vendasta Frontend Microservice</div>
-           </md-card>
-           <router-outlet></router-outlet>
+  <md-card style="text-align: center; margin: 30px auto; width: 250px;">
+    <img src="https://vbc-frontend.storage-download.googleapis.com/salesperson-details/vendasta_icon.png"/>
+    <div>Vendasta Frontend Microservice</div>
+  </md-card>
+  <router-outlet></router-outlet>
+             """)
+
+  # add basic test
+  clear_file('{}/src/app/app.component.spec.ts'.format(project_name),
+             """
+  import { TestBed, async } from '@angular/core/testing';
+  import { RouterTestingModule } from '@angular/router/testing';
+  
+  import { AppComponent } from './app.component';
+  
+  describe('sanity', () => {
+    it('succeeds properly', () => {
+        expect(true).toBe(true);
+    });
+  });
              """)
 
 
