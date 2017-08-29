@@ -124,8 +124,8 @@ def update_app_component(project_name):
                """
     <md-card style="text-align: center; margin: 30px auto; width: 300px;">
       <img src="https://vbc-frontend.storage-download.googleapis.com/salesperson-details/vendasta_icon.png"/>
-      <div>Welcome to your new angular microservice</div>
-      <div style="font-size:10px;padding-top:20px;">va-ng-μs</div>
+      <div>Welcome to your new angular app</div>
+      <div style="font-size:10px;padding-top:20px;">va-ng-app</div>
     </md-card>
     <router-outlet></router-outlet>
                """)
