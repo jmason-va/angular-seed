@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import os
-import subprocess
 
 # project to take the config from
 project_path = "https://raw.githubusercontent.com/jmason-va/angular-seed/master"
@@ -21,6 +20,26 @@ polyfills = "{}/src/polyfills.ts".format(project_path)
 GREEN = '\033[92m'
 RED = '\033[91m'
 END = '\033[0m'
+
+
+def replace_in_file(file_name, to_replace, replacement):
+    # Read in the file
+    with open(file_name, 'r') as file:
+        filedata = file.read()
+    # Replace the target string
+    filedata = filedata.replace(to_replace, replacement)
+    # Write the file out again
+    with open(file_name, 'w') as file:
+        file.write(filedata)
+
+
+def replace_file(file_name, text=''):
+    # Read in the file
+    with open(file_name, 'r') as file:
+        filedata = file.read()
+    # Write the file out again with the text
+    with open(file_name, 'w') as file:
+        file.write(text)
 
 
 def get_file(path, filename):
@@ -101,8 +120,8 @@ def angular_material_config(project_name):
     """configuration"""
     print '\n{}adding material to project{}'.format(GREEN, END)
     app_module_path = '{}/src/app/app.module.ts'.format(project_name)
-    replace_in_file(app_module_path, """import { NgModule } from '@angular/core';""",
-                    # add material import to app.module
+    replace_in_file(app_module_path,
+                    "import { NgModule } from '@angular/core';",  # add material import to app.module
                     "import { NgModule } from '@angular/core';\nimport { MaterialModule } from '@angular/material';")
     replace_in_file(app_module_path, 'imports: [', 'imports: [ MaterialModule,')
 
@@ -120,31 +139,31 @@ def package_json_config(project_name):
 def update_app_component(project_name):
     """configuration"""
     replace_file('{}/src/app/app.component.html'.format(project_name),  # clear app.component
-               """
-    <md-card style="text-align: center; margin: 30px auto; width: 300px;">
-      <img src="https://vbc-frontend.storage-download.googleapis.com/salesperson-details/vendasta_icon.png"/>
-      <div>Welcome to your new angular app</div>
-      <div style="font-size:10px;padding-top:20px;">va-ng-app</div>
-    </md-card>
-    <router-outlet></router-outlet>
-               """)
+                 """
+<md-card style="text-align: center; margin: 30px auto; width: 300px;">
+    <img src="https://vbc-frontend.storage-download.googleapis.com/salesperson-details/vendasta_icon.png"/>
+    <div>Welcome to your new angular app</div>
+    <div style="font-size:10px;padding-top:20px;">va-ng-app</div>
+</md-card>
+<router-outlet></router-outlet>
+                 """)
 
 
 def update_default_specs(project_name):
     """configuration"""
     replace_file('{}/src/app/app.component.spec.ts'.format(project_name),
-               """
-    import { TestBed, async } from '@angular/core/testing';
-    import { RouterTestingModule } from '@angular/router/testing';
-    
-    import { AppComponent } from './app.component';
-    
-    describe('sanity', () => {
-      it('succeeds properly', () => {
-          expect(true).toBe(true);
-      });
+                 """
+import { TestBed, async } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+
+import { AppComponent } from './app.component';
+
+describe('sanity', () => {
+    it('succeeds properly', () => {
+        expect(false).toBe(true);
     });
-               """)
+});
+                 """)
 
 
 def generate_config_files(project_name, parent_project_name):
@@ -166,29 +185,8 @@ def generate_config_files(project_name, parent_project_name):
 def generate_angular_cli_project(project_name, parent_project_name):
     """generate angular project using the cli"""
     print '\n{}generating new angular project {}{}'.format(GREEN, project_name, END)
-    print '{}add routing in {} to your new microservice at https://github.com/vendasta/{}/blob/master/src/dispatch.yaml{}\n'.format(
-        GREEN, parent_project_name, parent_project_name, END)
+    print '{}add routing in {} to your new microservice at https://github.com/vendasta/{}/blob/master/src/dispatch.yaml{}\n'.format(GREEN, parent_project_name, parent_project_name, END)
     os.system('ng new {} --routing'.format(project_name))
-
-
-def replace_in_file(file_name, to_replace, replacement):
-    # Read in the file
-    with open(file_name, 'r') as file:
-        filedata = file.read()
-    # Replace the target string
-    filedata = filedata.replace(to_replace, replacement)
-    # Write the file out again
-    with open(file_name, 'w') as file:
-        file.write(filedata)
-
-
-def replace_file(file_name, text=''):
-    # Read in the file
-    with open(file_name, 'r') as file:
-        filedata = file.read()
-    # Write the file out again with the text
-    with open(file_name, 'w') as file:
-        file.write(text)
 
 
 def main():
