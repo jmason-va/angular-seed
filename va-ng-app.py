@@ -91,7 +91,6 @@ def styles_config(project_name):
 
 def angular_cli_config(project_name):
     """configuration"""
-    print '\n{}updating default styling {}'.format(GREEN, END)
     replace_in_file('{}/.angular-cli.json'.format(project_name), 'css',
                     'scss')  # configure project to use scss by default
     replace_in_file('{}/.angular-cli.json'.format(project_name), 'dist',
@@ -120,7 +119,7 @@ def package_json_config(project_name):
 
 def update_app_component(project_name):
     """configuration"""
-    clear_file('{}/src/app/app.component.html'.format(project_name),  # clear app.component
+    replace_file('{}/src/app/app.component.html'.format(project_name),  # clear app.component
                """
     <md-card style="text-align: center; margin: 30px auto; width: 300px;">
       <img src="https://vbc-frontend.storage-download.googleapis.com/salesperson-details/vendasta_icon.png"/>
@@ -133,7 +132,7 @@ def update_app_component(project_name):
 
 def update_default_specs(project_name):
     """configuration"""
-    clear_file('{}/src/app/app.component.spec.ts'.format(project_name),
+    replace_file('{}/src/app/app.component.spec.ts'.format(project_name),
                """
     import { TestBed, async } from '@angular/core/testing';
     import { RouterTestingModule } from '@angular/router/testing';
@@ -167,7 +166,7 @@ def generate_config_files(project_name, parent_project_name):
 def generate_angular_cli_project(project_name, parent_project_name):
     """generate angular project using the cli"""
     print '\n{}generating new angular project {}{}'.format(GREEN, project_name, END)
-    print '{}add routing in {} to your new microservice at https://github.com/vendasta/{}/blob/master/src/dispatch.yaml{}\n\n'.format(
+    print '{}add routing in {} to your new microservice at https://github.com/vendasta/{}/blob/master/src/dispatch.yaml{}\n'.format(
         GREEN, parent_project_name, parent_project_name, END)
     os.system('ng new {} --routing'.format(project_name))
 
@@ -183,7 +182,7 @@ def replace_in_file(file_name, to_replace, replacement):
         file.write(filedata)
 
 
-def clear_file(file_name, text=''):
+def replace_file(file_name, text=''):
     # Read in the file
     with open(file_name, 'r') as file:
         filedata = file.read()
@@ -196,21 +195,18 @@ def main():
     """main"""
     print "\nthis will generate a angular project from the standard-cli."
     print "it will also generate the Vendasta config needed for a frontend microservice."
-    print "{}warning: angular-cli is required to run this script.{}".format(RED, END)
-    print "{}see https://github.com/angular/angular-cli for more details.\n{}".format(RED, END)
+    print "{}WARNING: angular-cli is required to run this script. see https://github.com/angular/angular-cli for more details.\n{}".format(RED, END)
 
     project_name = raw_input("enter a project name: ").strip()
     parent_project_name = raw_input("enter the project that will serve this module: ").strip()
 
     generate_angular_cli_project(project_name, parent_project_name)
-
-    print '\n\n\n{}generating vendasta config for {}{}'.format(GREEN, project_name, END)
     generate_config_files(project_name, parent_project_name)
 
-    print '\n\n\n{}installing node modules{}'.format(GREEN, END)
+    print '\n{}installing node modules{}'.format(GREEN, END)
     os.system('npm --prefix {} install'.format(project_name))
 
-    print '\n\n\n{}starting project{}'.format(GREEN, END)
+    print '\n{}starting project{}'.format(GREEN, END)
     os.system('npm --prefix {} start'.format(project_name))
 
 
