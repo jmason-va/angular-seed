@@ -7,7 +7,7 @@ import os
 project_path = "https://raw.githubusercontent.com/jmason-va/angular-seed/master"
 
 # paths to generic config files
-jenkinsfile = "{}/jenkinsfile".format(project_path)
+jenkinsfile = "{}/Jenkinsfile".format(project_path)
 tasks = "{}/tasks.py".format(project_path)
 app_yaml = "{}/app.yaml".format(project_path)
 angular_cli_json = "{}/.angular-cli.json".format(project_path)
